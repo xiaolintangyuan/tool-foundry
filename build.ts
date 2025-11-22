@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import { pathToFileURL } from 'url';
 
-const scriptsDir = path.join(process.cwd(), 'scripts');
+const scriptsDir = path.join(process.cwd(), 'dist', 'scripts');
 const tools: any[] = [];
 
 const files = fs.readdirSync(scriptsDir).filter((file: string) => file.endsWith('.js'));

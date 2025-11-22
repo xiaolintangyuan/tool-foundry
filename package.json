@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "deploy": "npm run build && node dist/build.js && node dist/server.js"
+    "deploy": "tsc && node dist/build.js && node dist/server.js"
   },
   "keywords": [
     "ai",

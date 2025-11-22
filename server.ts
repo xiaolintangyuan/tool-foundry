@@ -12,7 +12,7 @@ app.use(express.json());
 const PORT = process.env.GATEWAY_PORT || 3000;
 
 // Build TOOL_MAPPING
-const scriptsDir = path.join(process.cwd(), 'scripts');
+const scriptsDir = path.join(process.cwd(), 'dist', 'scripts');
 const TOOL_MAPPING: Record<string, Function> = {};
 
 const files = fs.readdirSync(scriptsDir).filter((file: string) => file.endsWith('.js'));
@@ -63,6 +63,8 @@ app.post('/invoke/', async (req: express.Request, res: express.Response) => {
                 headers: {
                     'Authorization': `Bearer ${process.env.LLM_APIKEY}`,
                     'Content-Type': 'application/json',
+                    'HTTP-Referer': 'https://github.com/xiaolintangyuan/tool-foundry',
+                    'X-Title': `tool-foundry`
                 },
                 body: JSON.stringify(payload),
             });

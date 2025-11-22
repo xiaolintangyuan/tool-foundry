@@ -11,6 +11,6 @@
     "declaration": false,
     "skipLibCheck": true
   },
-  "include": ["*.ts"],
+  "include": ["*.ts", "scripts/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

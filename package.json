@@ -1,0 +1,29 @@
+{
+  "name": "tool-foundry",
+  "version": "1.0.0",
+  "description": "A self-hosted server that builds available functions from scripts folder/various JS files into a master 'tools.json', then runs a server to host an API gateway. Users invoking the API gateway connect to a 3rd party LLM provider, which invokes tool calls via the tools.json index or returns text responses.",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "deploy": "npm run build && node dist/build.js && node dist/server.js"
+  },
+  "keywords": [
+    "ai",
+    "tool-calls",
+    "server"
+  ],
+  "author": "xiaolintangyuan",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "fs-extra": "^11.3.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  }
+}

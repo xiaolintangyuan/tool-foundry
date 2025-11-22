@@ -11,15 +11,19 @@ for (const file of files) {
   const filePath = path.join(scriptsDir, file);
   const module = await import(pathToFileURL(filePath).href);
   const toolDef = module.default;
-  if (toolDef && toolDef.name && toolDef.description && toolDef.parameters) {
-    tools.push({
-      type: 'function',
-      function: {
-        name: toolDef.name,
-        description: toolDef.description,
-        parameters: toolDef.parameters,
-      },
-    });
+  if (toolDef && typeof toolDef === 'object') {
+    for (const tool of Object.values(toolDef)) {
+      if (tool && (tool as any).name && (tool as any).description && (tool as any).parameters) {
+        tools.push({
+          type: 'function',
+          function: {
+            name: (tool as any).name,
+            description: (tool as any).description,
+            parameters: (tool as any).parameters,
+          },
+        });
+      }
+    }
   }
 }
 

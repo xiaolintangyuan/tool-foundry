@@ -9,6 +9,9 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+// Serve PDF files statically
+app.use('/pdfs', express.static(path.join(process.cwd(), 'pdfs')));
+
 const PORT = process.env.GATEWAY_PORT || 3000;
 
 // Build TOOL_MAPPING
@@ -21,8 +24,12 @@ for (const file of files) {
     const filePath = path.join(scriptsDir, file);
     const module = await import(pathToFileURL(filePath).href);
     const toolDef = module.default;
-    if (toolDef && toolDef.name && toolDef.function) {
-        TOOL_MAPPING[toolDef.name] = toolDef.function;
+    if (toolDef && typeof toolDef === 'object') {
+        for (const tool of Object.values(toolDef)) {
+            if (tool && (tool as any).name && (tool as any).function) {
+                TOOL_MAPPING[(tool as any).name] = (tool as any).function;
+            }
+        }
     }
 }
 

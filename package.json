@@ -16,9 +16,13 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "cheerio": "^1.1.2",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "fs-extra": "^11.3.2"
+    "fs-extra": "^11.3.2",
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^24.31.0",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.5",
